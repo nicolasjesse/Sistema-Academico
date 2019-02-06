@@ -12,12 +12,12 @@ class Login(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
 
-        self.msg = tk.Label(text="Sistema Escolar", font="Arial, %s" % str(parent.appw//50))
-        self.loginLabel = tk.Label(text="Matricula:", font="Arial, %s" % str(parent.appw//80))
-        self.senhaLabel = tk.Label(text="Senha:", font="Arial, %s" % str(parent.appw//80))
+        self.msg = tk.Label(text="Sistema Escolar", font= "Arial, %s" % str(parent.appw//50))
+        self.loginLabel = tk.Label(text="Matricula:", font= "Arial, %s" % str(parent.apph//50))
+        self.senhaLabel = tk.Label(text="Senha:", font= "Arial, %s" % str(parent.apph//50))
         self.loginEntry = tk.Entry()
         self.senhaEntry = tk.Entry(show="*")
-        self.loginButton = tk.Button(text="Entrar", font="Arial, %s" % str(parent.appw//75), command=self.entrar)
+        self.loginButton = tk.Button(text="Entrar", font="Arial, %s" % str(parent.appw//90), command=self.entrar)
 
         for widget in self.parent.winfo_children():
             widget.place(x=10000, y=10000)
@@ -25,9 +25,10 @@ class Login(tk.Frame):
 
         self.msg.place(x=(self.parent.appw//2)-(self.msg.winfo_width()//2), y=0)
         self.loginLabel.place(x=(self.parent.appw//2)-2*(self.loginLabel.winfo_width()), y=self.parent.apph//2, height=self.parent.apph//20)
-        self.senhaLabel.place(x=(self.parent.appw//2)-2*(self.loginLabel.winfo_width()), y=(self.parent.apph//2)+self.loginEntry.winfo_height(), height=self.parent.apph//20)
-        self.loginEntry.place(x=(self.parent.appw//2)-(self.loginLabel.winfo_width()), y=self.parent.apph//2, width=self.parent.appw//6)
-        self.senhaEntry.place(x=(self.parent.appw//2)-(self.loginLabel.winfo_width()), y=(self.parent.apph//2)+self.loginEntry.winfo_height(), width=self.parent.appw//6)
+        self.update()
+        self.senhaLabel.place(x=(self.parent.appw//2)-2*(self.loginLabel.winfo_width()), y=(self.parent.apph//2)+self.loginLabel.winfo_height(), height=self.parent.apph//20)
+        self.loginEntry.place(x=(self.parent.appw//2)-(self.loginLabel.winfo_width()), y=self.parent.apph//2, width=self.parent.appw//6, height=self.loginLabel.winfo_height())
+        self.senhaEntry.place(x=(self.parent.appw//2)-(self.loginLabel.winfo_width()), y=(self.parent.apph//2)+self.loginLabel.winfo_height(), width=self.parent.appw//6, height=self.loginLabel.winfo_height())
         self.update()
         self.loginButton.place(x=((self.parent.appw//2)-(self.loginLabel.winfo_width()))+self.loginEntry.winfo_width(), y=self.parent.apph//2, height=self.loginEntry.winfo_height()+self.senhaEntry.winfo_height())
 

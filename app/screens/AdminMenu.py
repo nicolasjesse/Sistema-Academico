@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import ImageTk, Image
 from app.screens.admin_subscreens.Register import Register
+from app.screens.admin_subscreens.ShowAlunos import ShowAlunos
+from app.screens.admin_subscreens.Inicio import Inicio
 
 
 class AdminMenu(tk.Frame):
@@ -18,9 +20,9 @@ class AdminMenu(tk.Frame):
         self.userImg = ImageTk.PhotoImage(self.imgResizer)
         self.lbuttons_dic['imagem'] = tk.Button(image=self.userImg, highlightthickness=0, bd=0, command=self.img_click)
         ##BOTOES LATERAIS
-        self.lbuttons_dic['botao1'] = tk.Button(text="Inicio",font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0)
+        self.lbuttons_dic['botao1'] = tk.Button(text="Inicio",font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0, command=self.show_inicio)
         self.lbuttons_dic['botao2'] = tk.Button(text="Cadastro", font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0, command=self.show_register)
-        self.lbuttons_dic['botao3'] = tk.Button(text="Alunos", font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0)
+        self.lbuttons_dic['botao3'] = tk.Button(text="Alunos", font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0, command=self.show_alunos)
         self.lbuttons_dic['botao4'] = tk.Button(text="Profs", font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0)
         self.lbuttons_dic['botao_sair'] = tk.Button(text="Sair", font="Arial, %s" % str(parent.appw//80), highlightthickness=0, bd=0, command=self.voltar)
         cont = 0
@@ -47,6 +49,10 @@ class AdminMenu(tk.Frame):
     def img_click(self, event=None):
         print("opa")
     
+    def show_inicio(self):
+        show_inicio = Inicio(self.parent, self)
+        show_inicio.place(x=0, y=0)
+
     def voltar(self):
         self.parent.userSession = None
         self.parent.destroy_screen()
@@ -55,3 +61,7 @@ class AdminMenu(tk.Frame):
     def show_register(self):
         register_screen = Register(self.parent, self)
         register_screen.place(x=0, y=0)
+
+    def show_alunos(self):
+        show_alunos = ShowAlunos(self.parent, self)
+        show_alunos.place(x=0, y=0)

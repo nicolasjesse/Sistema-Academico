@@ -16,7 +16,7 @@ class App(tk.Tk):
         self.pcw = self.winfo_screenwidth()
         self.pch = self.winfo_screenheight()
         self.appw = self.pcw*2//3
-        self.apph = self.pch*3//4
+        self.apph = self.pch*2//3
         self.maxsize(self.appw, self.apph)
         self.minsize(self.appw, self.apph)
         self.x = (self.pcw//2) - (self.appw//2)
@@ -52,7 +52,7 @@ class App(tk.Tk):
         for widget in self.widlist:
             widget.destroy()
     
-    def destroy_reg(self): #apaga os widgets da tela register
+    def destroy_reg(self): #apaga os widgets da mini-tela
         for dic in self.widlistreg:
             for widget in dic:
                 dic[widget].destroy()

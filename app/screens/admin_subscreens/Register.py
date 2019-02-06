@@ -18,20 +18,17 @@ class Register(tk.Frame):
         self.comecoy = (parent.apph//len(screen.lbuttons_dic))
         self.meiox = ((parent.appw-self.comecox)//2)+self.comecox
         self.meioy =  ((parent.apph-self.comecoy)//2)+self.comecoy
+        self.thisx = self.parent.appw-self.comecox
+        self.thisy = self.parent.apph-self.comecoy
 
         self.dic = {}
         self.parent.widlistreg.append(self.dic)
-        self.dic['alunoButton'] = tk.Button(parent, text="Cadastrar um Aluno", command=self.aluno_cadastro, font="Arial, %s" % str(parent.appw//80))
-        self.dic['professorButton'] = tk.Button(parent, text="Cadastrar um Professor", command=self.professor_cadastro, font="Arial, %s" % str(parent.appw//80))
-
-        for button in self.dic:
-            self.dic[button].place(x=10000, y=10000)
-        
-        self.update()
+        self.dic['alunoButton'] = tk.Button(parent, text="Cadastrar um Aluno", command=self.aluno_cadastro)
+        self.dic['professorButton'] = tk.Button(parent, text="Cadastrar um Professor", command=self.professor_cadastro)
 
         cont = 0
         for button in self.dic:
-            self.dic[button].place(width=parent.appw//4, x=self.meiox-((parent.appw//4)//2), y=((self.meioy+(cont*self.dic[button].winfo_height()))-(self.dic[button].winfo_height()//2))-self.parent.apph//12)
+            self.dic[button].place(width=self.thisx-2, x=self.comecox+2, y=(self.comecoy+2)+cont*(self.thisy//len(self.dic)), height=(self.thisy//len(self.dic))-2)
             cont += 1
 
     def aluno_cadastro(self):
@@ -64,12 +61,12 @@ class Register(tk.Frame):
 
             cont=0
             for entry in self.dice:
-                self.dice[entry].place(x=self.meiox-(self.dice[entry].winfo_width()//2), y=(self.meioy+(cont*self.dice[entry].winfo_height()))-self.parent.apph//6)
+                self.dice[entry].place(x=self.meiox-(self.dice[entry].winfo_width()//2), y=(self.comecoy+2)+cont*self.parent.apph//16, height=self.parent.apph//16)
                 cont += 1
 
             cont=0
             for label in self.dicl:
-                self.dicl[label].place(x=self.meiox-(self.dice['nomeEntry'].winfo_width()), y=(self.meioy+(cont*self.dice['nomeEntry'].winfo_height()))-self.parent.apph//6)
+                self.dicl[label].place(x=self.meiox-(self.dice['nomeEntry'].winfo_width()), y=(self.comecoy+2)+cont*self.parent.apph//16, height=self.parent.apph//16)
                 cont += 1
 
         except Exception as error:
@@ -121,12 +118,12 @@ class Register(tk.Frame):
             
             cont=0
             for entry in self.dice:
-                self.dice[entry].place(x=self.meiox-(self.dice[entry].winfo_width()//2), y=(self.meioy+(cont*self.dice[entry].winfo_height()))-self.parent.apph//6)
+                self.dice[entry].place(x=self.meiox-(self.dice[entry].winfo_width()//2), y=(self.comecoy+2)+cont*self.parent.apph//16, height=self.parent.apph//16)
                 cont += 1
 
             cont=0
             for label in self.dicl:
-                self.dicl[label].place(x=self.meiox-(self.dice['nomeEntry'].winfo_width()), y=(self.meioy+(cont*self.dice['nomeEntry'].winfo_height()))-self.parent.apph//6)
+                self.dicl[label].place(x=self.meiox-(self.dice['nomeEntry'].winfo_width()), y=(self.comecoy+2)+cont*self.parent.apph//16, height=self.parent.apph//16)
                 cont += 1
 
         except Exception as error:

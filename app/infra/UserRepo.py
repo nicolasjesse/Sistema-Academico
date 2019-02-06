@@ -16,6 +16,31 @@ class UserRepo:
             print(error)
             return False
 
+    def update_user(self, new_user):
+        update_sql = "UPDATE usuario SET nome = '%s', cpf = '%s', email = '%s', senha = '%s', telefone = '%s' WHERE cod = " \
+                     "'%d'"
+        try:
+            cursor = self.__connection.cursor()
+            cursor.execute(update_sql % (new_user.nome, new_user.cpf, new_user.email, new_user.senha, new_user.telefone, new_user.cod))
+            return True
+        except Exception as error:
+            raise Exception(error)
+            return False
+
+    def get_users_by_type(self, type):
+        get_sql = "SELECT cod, nome, cpf, email, senha, telefone FROM usuario WHERE tipo_usuario= '%s' "
+        user_list = []
+        try:
+            cursor = self.__connection.cursor()
+            cursor.execute(get_sql % type)
+            results = cursor.fetchall()
+            for result in results:
+                user_list.append(User(result[0], result[1], result[2], result[3], result[4], type, result[5]))
+        except Exception as error:
+            raise Exception(error)
+        finally:
+            return user_list
+
     def get_users(self):
         get_sql = "SELECT cod, nome, cpf, email, senha, tipo_usuario, telefone FROM usuario"
         user_list = []
@@ -24,9 +49,9 @@ class UserRepo:
             cursor.execute(get_sql)
             results = cursor.fetchall()
             for result in results:
-                user_list.append(User(result[0], result[1], result[2], result[3], result[4], result[5], [result[6]]))
+                user_list.append(User(result[0], result[1], result[2], result[3], result[4], result[5], result[6]))
         except Exception as error:
-            print("Error: {0}".format(error))
+            raise Exception(error)
         finally:
             return user_list
 
