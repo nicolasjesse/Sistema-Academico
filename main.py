@@ -5,9 +5,12 @@ from app.screens.ProfessorMenu import ProfessorMenu
 from app.screens.AdminMenu import AdminMenu
 from app.models.User import User
 from app.infra.UserRepo import UserRepo
+from app.infra.NotasRepo import NotasRepo
 from tkinter import ttk
 from tkinter import messagebox
 
+
+notasrepo = NotasRepo()
 
 class App(tk.Tk):
 
@@ -28,7 +31,6 @@ class App(tk.Tk):
         self.widlistreg = []
         self.widlist = self.winfo_children()
         self.show_login()
-    
 
     def show_login(self):
         self.login = Login(self)

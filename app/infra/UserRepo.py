@@ -13,7 +13,7 @@ class UserRepo:
             cursor.execute(insert_sql % (user.nome, user.cpf, user.email, user.senha, user.tipo, user.telefone))
             return True
         except Exception as error:
-            print(error)
+            raise Exception(error)
             return False
 
     def update_user(self, new_user):
