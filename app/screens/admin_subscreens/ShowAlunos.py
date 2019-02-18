@@ -82,7 +82,8 @@ class ShowAlunos(tk.Frame):
             self.dicl[self.dado]['text']= self.entry.get()
             self.aluno = self.visitedSession
             user = User(self.aluno.cod, self.dicl['nome']['text'][6:], self.dicl['cpf']['text'][5:], self.dicl['email']['text'][7:], self.dicl['senha']['text'][7:], 'ALUNO', self.dicl['telefone']['text'][10:])
-            userrepo.update_user(user)
+            if userrepo.update_user(user):
+                print("yay")
             self.entry.destroy()
         except Exception as error:
             raise Exception(error)

@@ -25,7 +25,7 @@ class App(tk.Tk):
         self.x = (self.pcw//2) - (self.appw//2)
         self.y = (self.pch//2) - (self.apph//2)
         self.geometry('%dx%d+%d+%d' % (self.appw, self.apph, self.x, self.y))
-        self.title('TEOESCOLAR')
+        self.title('S.A.')
         self.frameSession = None
         self.userSession = None
         self.widlistreg = []

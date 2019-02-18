@@ -1,7 +1,7 @@
 import tkinter as tk
 from app.infra.UserRepo import UserRepo
 from tkinter import messagebox
-
+from PIL import ImageTk, Image
 
 userrepo = UserRepo()
 
@@ -12,7 +12,11 @@ class Login(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
 
-        self.msg = tk.Label(text="Sistema Escolar", font= "Arial, %s" % str(parent.appw//50))
+        self.imgGetter = Image.open("app/img/Beca.png")
+        self.imgResizer = self.imgGetter.resize((parent.appw//8, parent.appw//8), Image.ANTIALIAS)
+        self.userImg = ImageTk.PhotoImage(self.imgResizer)
+        self.img = tk.Label(image=self.userImg, highlightthickness=0, bd=0)
+        self.msg = tk.Label(text="SISTEMA ACADEMICO", font= "Arial, %s" % str(parent.appw//50))
         self.loginLabel = tk.Label(text="Matricula:", font= "Arial, %s" % str(parent.apph//50))
         self.senhaLabel = tk.Label(text="Senha:", font= "Arial, %s" % str(parent.apph//50))
         self.loginEntry = tk.Entry()
@@ -24,6 +28,8 @@ class Login(tk.Frame):
         self.update()
 
         self.msg.place(x=(self.parent.appw//2)-(self.msg.winfo_width()//2), y=0)
+        self.update()
+        self.img.place(x=(self.parent.appw//2)-(self.img.winfo_width()//2), y=self.msg.winfo_height())
         self.loginLabel.place(x=(self.parent.appw//2)-2*(self.loginLabel.winfo_width()), y=self.parent.apph//2, height=self.parent.apph//20)
         self.update()
         self.senhaLabel.place(x=(self.parent.appw//2)-2*(self.loginLabel.winfo_width()), y=(self.parent.apph//2)+self.loginLabel.winfo_height(), height=self.parent.apph//20)
@@ -45,7 +51,8 @@ class Login(tk.Frame):
                 elif user.tipo == 'ALUNO':
                     return self.parent.show_alunomenu()
                 elif user.tipo == 'PROFESSOR':
-                    return self.parent.show_professormenu()
+                    pass
+                    ##return self.parent.show_professormenu()
                 else:
                     pass
         messagebox.showerror("Erro", "Os dados não constam!")
