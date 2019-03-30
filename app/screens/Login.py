@@ -3,8 +3,8 @@ from app.infra.UserRepo import UserRepo
 from tkinter import messagebox
 from PIL import ImageTk, Image
 
-userrepo = UserRepo()
 
+userrepo = UserRepo()
 
 class Login(tk.Frame):
 
@@ -51,8 +51,7 @@ class Login(tk.Frame):
                 elif user.tipo == 'ALUNO':
                     return self.parent.show_alunomenu()
                 elif user.tipo == 'PROFESSOR':
-                    pass
-                    ##return self.parent.show_professormenu()
+                    return self.parent.show_professormenu()
                 else:
                     pass
         messagebox.showerror("Erro", "Os dados não constam!")
