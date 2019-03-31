@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from app.models.User import User
 from app.infra.UserRepo import UserRepo
 from app.infra.NotasRepo import NotasRepo
@@ -63,8 +64,7 @@ class ShowAlunos(tk.Frame):
             cont += 1
     
     def show_boletim(self, cod):
-        pass
-        boletim_show = Boletim(self.parent, self, notasrepo.get_notas_by_user_cod(cod))
+        boletim_show = Boletim(self.parent, self, notasrepo.get_notas_by_user_cod(cod), userrepo.get_disciplina(self.parent.userSession.cod))
         boletim_show.place(x=0, y=0)
         
     def pushentry(self, dado):
@@ -85,7 +85,7 @@ class ShowAlunos(tk.Frame):
             self.aluno = self.visitedSession
             user = User(self.aluno.cod, self.dicl['nome']['text'][6:], self.dicl['cpf']['text'][5:], self.dicl['email']['text'][7:], self.dicl['senha']['text'][7:], 'ALUNO', self.dicl['telefone']['text'][10:])
             if userrepo.update_user(user):
-                print("yay")
+                messagebox.showinfo("Informação alterada com sucesso!", "Informação alterada com sucesso!")
             self.entry.destroy()
         except Exception as error:
             raise Exception(error)

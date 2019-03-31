@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from functools import partial
 from app.infra.NotasRepo import NotasRepo
 
@@ -104,6 +105,7 @@ class Boletim(tk.Frame):
         try:
             self.dic['botao']['text'] = self.dic['entry'].get()
             notasrepo.update_nota(self.list['cod'], float(self.dic['entry'].get()))
+            messagebox.showinfo("Nota alterada com sucesso!", "Nota alterada com sucesso!")
             self.dic['entry'].destroy()
         except Exception as error:
             raise Exception(error)

@@ -67,3 +67,16 @@ class UserRepo:
             raise("Error: {0}".format(error))
         finally:
             return user
+    
+    def get_disciplina(self, professor):
+        get_sql = "SELECT DISTINCT n.disciplina FROM usuario u JOIN nota n ON u.cod=n.professor_cod WHERE u.cod=%i"
+        disciplina = None
+        try:
+            cursor = self.__connection.cursor()
+            cursor.execute(get_sql % professor)
+            disciplina = cursor.fetchone()
+            disciplina = disciplina[0]
+        except Exception as error:
+            raise("Error: {0}".format(error))
+        finally:
+            return disciplina
